@@ -3,7 +3,7 @@ import {ArticleService} from "../../services/article.service";
 import {Article} from "../../components/article.component";
 import {GlobalsConstants} from "../../constants/globals.constants";
 import {NavController, NavParams, ModalController} from "ionic-angular";
-import {ArticleDetails} from "../articles-details/article-details";
+import {ArticleDetails} from "../article-details/article-details";
 import {searchModalPage} from "../search-articles/search-articles";
 
 
@@ -80,7 +80,10 @@ export class HelloIonicPage {
   doInfinite(infiniteScroll){
     this.skip = this.limit;
     this.limit +=6;
-    this.getArticlesByLimit(this.skip,this.limit);
-    infiniteScroll.complete();
+    setTimeout(()=>{
+      this.getArticlesByLimit(this.skip,this.limit);
+      infiniteScroll.complete();
+
+    },1000);
   }
 }

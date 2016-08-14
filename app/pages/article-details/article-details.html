@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!selectedItem">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="art-detail-img">
+    <img src="./img/lizard.png"/>
+  </div>
+
+  <ion-card>
+    <ion-card-content text-center>
+      <button  class="contact-btn-left" medium round secondary >
+        <ion-icon   name="call" royal></ion-icon>
+      </button>
+      <button class="" medium round danger>
+        <ion-icon   name="mail"></ion-icon>
+      </button>
+      <button class="contact-btn-right" medium round >
+        <ion-icon name="text" ></ion-icon>
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header class="header-padding">
+      <ion-item>
+        Prix : {{article.prix}}
+        <ion-badge item-right>{{article.nombreDeVue}}</ion-badge>
+      </ion-item>
+    </ion-card-header>
+    <hr class="card-devider" />
+    <ion-card-content>
+      <h2 text-capitalize style="margin-bottom: 5px;">{{article.titre}}</h2>
+      <p text-justify>{{article.details}}</p>
+      <p *ngIf="article.dateModification === null">Ajouté : {{article.dateAjout}}</p>
+      <p *ngIf="article.dateModification">Modifié : {{article.dateModification}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header text-center>
+      Vendeur
+    </ion-card-header>
+    <hr class="card-devider" />
+    <ion-card-content>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="img/lizard.png">
+        </ion-avatar>
+        {{article.utilisateur.nom}} {{article.utilisateur.prenom}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card id="article-details-map">
+
+  </ion-card>
+
+  <ion-card text-center>
+    <ion-card-header class="header-padding">
+      Infos supplémentaires
+    </ion-card-header>
+    <hr class="card-devider" />
+    <ion-card-content>
+      <ion-icon large name="swap"></ion-icon>
+      <ion-icon large name="chatbubbles"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card text-center>
+    <ion-card-header class="header-padding">
+      Partager l'annonce
+    </ion-card-header>
+    <hr class="card-devider" />
+    <ion-card-content>
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-icon name="logo-twitter"></ion-icon>
+      <ion-icon name="mail"></ion-icon>
+      <ion-icon name="logo-whatsapp"></ion-icon>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
