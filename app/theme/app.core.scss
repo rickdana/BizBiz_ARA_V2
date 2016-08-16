@@ -14,3 +14,17 @@
 @import "../pages/article-details/article-details";
 
 @import "../pages/search-articles/search-articles";
+
+.avatar {
+  height: 88px;
+  width: 88px;
+}
+
+.img-circle {
+  border-radius: 50%;
+  background-size:150px;
+  width: 85px;
+  height: 80px;
+  margin-left: 7%;
+  margin-top: 3%;
+}

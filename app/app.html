@@ -1,12 +1,24 @@
 <ion-menu [content]="content">
 
   <ion-toolbar>
-    <ion-title>Pages</ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
 
   <ion-content>
     <ion-list>
+      <ion-list-header>
+        <section *ngIf="false" class="dark-bg expanded"  menu-close  >
+          <span class="avatar" style="background: url('./img/default.png'); background-size: cover;"></span>
+          <section style="color: black">Se Connecter</section>
+        </section>
+        <section *ngIf="true" class="profil-centre dark-bg expanded">
+          <img src='./img/default.png' alt="" class="img-circle">
+          <!--<img *ngIf="offLine  || infoUserLogged.photo.idPhoto==1" src='./img/default.png' alt="" class="img-circle">-->
+          <section>Nom Prenom</section>
+        </section>
+      </ion-list-header>
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}
       </button>
     </ion-list>

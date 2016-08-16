@@ -1,9 +1,23 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar pixis>
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Details</ion-title>
+    <ion-buttons end>
+      <button (click)="searchArticle()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button (click)="option()">
+        <ion-icon isActive="true" name="heart"></ion-icon>
+      </button>
+    </ion-buttons> <ion-buttons end>
+      <button (click)="option($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -35,8 +49,8 @@
     </ion-card-header>
     <hr class="card-devider" />
     <ion-card-content>
-      <h2 text-capitalize style="margin-bottom: 5px;">{{article.titre}}</h2>
-      <p text-justify>{{article.details}}</p>
+      <h2 margin-bottom text-capitalize style="margin-bottom: 5px;">{{article.titre}}</h2>
+      <p margin-bottom text-justify>{{article.details}}</p>
       <p *ngIf="article.dateModification === null">Ajouté : {{article.dateAjout}}</p>
       <p *ngIf="article.dateModification">Modifié : {{article.dateModification}}</p>
     </ion-card-content>
@@ -66,9 +80,9 @@
       Infos supplémentaires
     </ion-card-header>
     <hr class="card-devider" />
-    <ion-card-content>
-      <ion-icon large name="swap"></ion-icon>
-      <ion-icon large name="chatbubbles"></ion-icon>
+    <ion-card-content no-margin>
+      <ion-icon margin class="social-media-icon" name="swap"></ion-icon>
+      <ion-icon margin class="social-media-icon"  name="chatbubbles"></ion-icon>
     </ion-card-content>
   </ion-card>
 
@@ -78,10 +92,11 @@
     </ion-card-header>
     <hr class="card-devider" />
     <ion-card-content>
-      <ion-icon name="logo-facebook"></ion-icon>
-      <ion-icon name="logo-twitter"></ion-icon>
-      <ion-icon name="mail"></ion-icon>
-      <ion-icon name="logo-whatsapp"></ion-icon>
+      <ion-icon margin facebook class="social-media-icon" name="logo-facebook"></ion-icon>
+      <ion-icon margin twitter class="social-media-icon" name="logo-twitter"></ion-icon>
+      <ion-icon margin danger class="social-media-icon" name="mail"></ion-icon>
+      <ion-icon margin dark class="social-media-icon" name="text"></ion-icon>
+      <ion-icon margin whatsapp class="social-media-icon" name="logo-whatsapp"></ion-icon>
     </ion-card-content>
   </ion-card>
 </ion-content>

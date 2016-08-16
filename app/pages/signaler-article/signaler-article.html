@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar pixis>
     <ion-title>
-      Que cherchez vous ?
+     Signaler un abus
     </ion-title>
     <ion-buttons start>
       <button (click)="dismiss()">
@@ -14,12 +14,5 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar
-    [(ngModel)]="myInput"
-    [cancelButtonText] ="Cancel"
-    [showCancelButton]="false"
-    (ionInput)="onInput($event)"
-    (ionCancel)="onCancel($event)">
-  </ion-searchbar>
-<h1>Search Modal</h1>
+  <h1>Signaler Modal</h1>
 </ion-content>

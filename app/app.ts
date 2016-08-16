@@ -4,6 +4,7 @@ import {StatusBar} from 'ionic-native';
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {ArticleService} from "./services/article.service";
+import {GlobalsConstants} from "./constants/globals.constants";
 
 
 @Component({
@@ -11,10 +12,9 @@ import {ArticleService} from "./services/article.service";
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-
   // make HelloIonicPage the root (or first) page
   rootPage: any = HelloIonicPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any,icon:any}>;
 
   constructor(
     public platform: Platform,
@@ -24,8 +24,12 @@ class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Acceuil', component: HelloIonicPage, icon:'home'},
+      { title: 'Catégories', component: ListPage , icon:'list-box'},
+      { title: 'Mes Favoris', component: ListPage , icon:'heart'},
+      { title: 'Invitez vos amis', component: ListPage, icon:'people' },
+      { title: 'Aide', component: ListPage, icon:'help-circle' },
+      { title: 'Se deconnecter', component: ListPage , icon:'log-out'}
     ];
   }
 
