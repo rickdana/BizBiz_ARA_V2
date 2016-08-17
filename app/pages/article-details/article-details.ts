@@ -4,11 +4,12 @@ import {Article} from "../../components/article.component";
 import {GoogleMap, GoogleMapsEvent} from "ionic-native";
 import {signalerModalPage} from "../signaler-article/signaler-article";
 import {TiteCapitalize} from "../../pipes/article-titre.pipe";
+import {OccasStreetTimer} from "../../pipes/timer.pipe";
 
 
 @Component({
   templateUrl: 'build/pages/article-details/article-details.html',
-  pipes:[TiteCapitalize]
+  pipes: [OccasStreetTimer,TiteCapitalize]
 })
 export class ArticleDetails {
   private article: Article;

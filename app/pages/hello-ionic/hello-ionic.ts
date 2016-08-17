@@ -7,6 +7,7 @@ import {ArticleDetails} from "../article-details/article-details";
 import {searchModalPage} from "../search-articles/search-articles";
 import {OccasStreetTimer} from "../../pipes/timer.pipe";
 import {TiteCapitalize} from "../../pipes/article-titre.pipe";
+import { Network } from 'ionic-native';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class HelloIonicPage {
 
   private articles1:Array<Article> = [];
   private articles2:Array<Article> = [];
+  private offLine:boolean;
 
   constructor(private articleService:ArticleService,
               private navCtrl: NavController,
@@ -28,6 +30,7 @@ export class HelloIonicPage {
               private modalController : ModalController) {
 
     this.getArticlesByLimit(this.skip,this.limit);
+
   }
 
   loadAll(){
@@ -43,6 +46,8 @@ export class HelloIonicPage {
   getArticlesByLimit(skip:number,limit:number){
 
       this.articleService.getArticlesByLimit(skip,limit).subscribe(res => {
+        this.offLine = false;
+
         let articles = res;
         let tab1, tab2;
         // console.log(articles)
@@ -54,6 +59,11 @@ export class HelloIonicPage {
         tab2.forEach(x => {
           this.articles2.push(x);
         });
+
+      },err =>{
+        console.log('err',err);
+        // watch network for a disconnect
+        this.offLine = true;
 
       });
   }
@@ -75,7 +85,7 @@ export class HelloIonicPage {
   doRefresh(refresher) {
     this.articles1 = [];
     this.articles2 = [];
-    this.getArticlesByLimit(0,6);
+    this.getArticlesByLimit(this.skip,this.limit);
     refresher.complete();
 
   }

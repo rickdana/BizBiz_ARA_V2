@@ -30,8 +30,18 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <ion-row *ngIf="offLine">
+    <ion-col text-center>
+      <div class="network-error">
+        <img margin-bottom src="./img/cloud-computing.png"/>
+        <h4>Impossible de charger les articles</h4>
+        <p>Abscende de connexion internet. Veuillez vérifier votre connexion et réessayer</p>
+        <button outline pixis (click)="getArticlesByLimit(0,6)">REESSAYER</button>
+      </div>
+    </ion-col>
+  </ion-row>
 
-  <ion-row>
+  <ion-row *ngIf="!offLine">
     <ion-col width-50 no-padding>
       <ion-card *ngFor="let art1 of articles1"  (click)="articleDetails($event,art1)">
         <img src="./img/beauty.jpg"/>
@@ -68,7 +78,7 @@
       <ion-icon name="add" is-active="false"></ion-icon>
     </button>
   </ion-row>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll *ngIf="!offLine" (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="chargement...">

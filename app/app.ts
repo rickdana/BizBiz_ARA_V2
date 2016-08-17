@@ -5,6 +5,7 @@ import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ListPage} from './pages/list/list';
 import {ArticleService} from "./services/article.service";
 import {GlobalsConstants} from "./constants/globals.constants";
+import {OccasStreetTimer} from "./pipes/timer.pipe";
 
 
 @Component({

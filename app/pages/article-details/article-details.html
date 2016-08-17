@@ -51,8 +51,8 @@
     <ion-card-content>
       <h2 margin-bottom text-capitalize style="margin-bottom: 5px;">{{article.titre | titeCapitalize}}</h2>
       <p margin-bottom text-justify>{{article.details}}</p>
-      <p *ngIf="article.dateModification === null">Ajouté : {{article.dateAjout}}</p>
-      <p *ngIf="article.dateModification">Modifié : {{article.dateModification}}</p>
+      <p *ngIf="article.dateModification === null">Ajouté : {{article.dateAjout | occasStreetTimer}}</p>
+      <p *ngIf="article.dateModification">Modifié : {{article.dateModification | occasStreetTimer}}</p>
     </ion-card-content>
   </ion-card>
 

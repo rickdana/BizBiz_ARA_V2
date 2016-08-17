@@ -9,6 +9,7 @@ import {Pipe, PipeTransform} from "@angular/core";
   name:'occasStreetTimer'
 })
 export class OccasStreetTimer implements PipeTransform{
+
   private terms = [
     {
       time:10,
@@ -43,7 +44,7 @@ export class OccasStreetTimer implements PipeTransform{
     {
       time:30 * 24 * 60 * 60,
       divide:24 * 60 * 60,
-      text:"environ un jour"
+      text:"%d jours"
     },{
       time:45*24*60*60,
       divide:24 * 60 * 60 * 30,
@@ -72,14 +73,12 @@ export class OccasStreetTimer implements PipeTransform{
 
     for(term of this.terms){
       if(seconde < term.time){
-        console.log("timers",seconde)
         break;
       }
     }
 
     wording += term.text.replace('%d',Math.round(seconde/term.divide));
 
-    console.log(wording);
     return wording;
   }
 
