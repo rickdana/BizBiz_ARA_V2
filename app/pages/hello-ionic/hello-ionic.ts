@@ -2,12 +2,11 @@ import {Component} from '@angular/core';
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../components/article.component";
 import {GlobalsConstants} from "../../constants/globals.constants";
-import {NavController, NavParams, ModalController} from "ionic-angular";
+import {NavController, NavParams, ModalController, ViewController, PopoverController} from "ionic-angular";
 import {ArticleDetails} from "../article-details/article-details";
 import {searchModalPage} from "../search-articles/search-articles";
 import {OccasStreetTimer} from "../../pipes/timer.pipe";
 import {TiteCapitalize} from "../../pipes/article-titre.pipe";
-import { Network } from 'ionic-native';
 
 
 @Component({
@@ -24,10 +23,15 @@ export class HelloIonicPage {
   private articles2:Array<Article> = [];
   private offLine:boolean;
 
+  private prixOrder:string = 'croissants';
+  private dateOrder:string = 'décroissantes';
+
+
   constructor(private articleService:ArticleService,
               private navCtrl: NavController,
               private navParams: NavParams,
-              private modalController : ModalController) {
+              private modalController : ModalController,
+              private popoverCtrl: PopoverController) {
 
     this.getArticlesByLimit(this.skip,this.limit);
 
@@ -98,5 +102,53 @@ export class HelloIonicPage {
       infiniteScroll.complete();
 
     },1000);
+  }
+
+  option(myEvent){
+
+    let popover = this.popoverCtrl.create(articlesPopOver,{prixOrder:this.prixOrder,dateOrder:this.dateOrder});
+    popover.present({
+      ev: myEvent
+    });
+
+    popover.onDidDismiss(data => {
+      this.dateOrder = data.dateOrder;
+      this.prixOrder = data.prixOrder
+    })
+  }
+}
+
+@Component({
+  template: `<ion-list no-margin>
+                <ion-item  (click)="trierParPix(prixOrder)">
+                   prix {{prixOrder}}
+                </ion-item> 
+                <ion-item  (click)="trierParDate(dateOrder)">
+                   Date {{dateOrder}}
+                </ion-item>
+             </ion-list>`
+})
+class articlesPopOver {
+  private prixOrder:string;
+  private dateOrder:string;
+
+  constructor(private viewCtrl: ViewController,navParams: NavParams) {
+    this.dateOrder = navParams.get('dateOrder');
+    this.prixOrder = navParams.get('prixOrder');
+  }
+
+  trierParPix(order:string){
+    console.log("trier par prix "+order)
+    this.prixOrder = this.prixOrder === 'croissants'?'décroissants':'croissants';
+    this.viewCtrl.dismiss({prixOrder:this.prixOrder,dateOrder:this.dateOrder});
+  }
+
+  trierParDate(order:string){
+    console.log("trier par date "+order)
+    this.dateOrder = this.dateOrder === 'décroissantes'?'croissantes':'décroissantes';
+    this.viewCtrl.dismiss({prixOrder:this.prixOrder,dateOrder:this.dateOrder});
+  }
+  close() {
+    this.viewCtrl.dismiss({prixOrder:this.prixOrder,dateOrder:this.dateOrder});
   }
 }
