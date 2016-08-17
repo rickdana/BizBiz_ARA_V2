@@ -19,11 +19,7 @@
 </ion-header>
 
 
-<ion-content padding class="getting-started">
-
-  <button fab danger fab-fixed fab-bottom fab-right >
-    <ion-icon name="add" is-active="false"></ion-icon>
-  </button>
+<ion-content no-padding class="getting-started">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
@@ -36,30 +32,41 @@
 
 
   <ion-row>
-    <ion-col width-50>
+    <ion-col width-50 no-padding>
       <ion-card *ngFor="let art1 of articles1"  (click)="articleDetails($event,art1)">
         <img src="./img/beauty.jpg"/>
-        <ion-card-content>
-          <ion-card-title>
-            {{art1.prix}}
+        <ion-card-content text-center no-padding margin-bottom>
+          <ion-card-title  class="price" >
+            {{art1.prix | currency:'XAF':true}}}}
           </ion-card-title>
-          {{art1.titre}}
+          <h6>{{art1.titre | titeCapitalize}}</h6>
         </ion-card-content>
+        <section class="timer" text-right>
+          <span *ngIf="art1.dateModification === null"t>Ajouté : {{art1.dateAjout | occasStreetTimer}}</span>
+          <span *ngIf="art1.dateModification">Modifié : {{art1.dateModification | occasStreetTimer}}</span>
+        </section>
       </ion-card>
     </ion-col>
 
-    <ion-col width-50>
+    <ion-col width-50 no-padding>
       <ion-card *ngFor="let art2 of articles2" (click)="articleDetails($event,art2)">
         <img src="./img/cat.jpg"/>
 
-        <ion-card-content>
-          <ion-card-title>
-            {{art2.prix}}
+        <ion-card-content text-center no-padding margin-bottom>
+          <ion-card-title class="price">
+            {{art2.prix | currency:'XAF':true}}
           </ion-card-title>
-          {{art2.titre}}
+          <h6>{{art2.titre | titeCapitalize}}</h6>
         </ion-card-content>
+        <section class="timer" text-right>
+          <span *ngIf="art2.dateModification === null" >Ajouté : {{art2.dateAjout | occasStreetTimer}}</span>
+          <span *ngIf="art2.dateModification">Modifié : {{art2.dateModification | occasStreetTimer}}</span>
+        </section>
       </ion-card>
     </ion-col>
+    <button fab danger fab-fixed fab-bottom fab-right >
+      <ion-icon name="add" is-active="false"></ion-icon>
+    </button>
   </ion-row>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content

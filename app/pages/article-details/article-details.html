@@ -49,7 +49,7 @@
     </ion-card-header>
     <hr class="card-devider" />
     <ion-card-content>
-      <h2 margin-bottom text-capitalize style="margin-bottom: 5px;">{{article.titre}}</h2>
+      <h2 margin-bottom text-capitalize style="margin-bottom: 5px;">{{article.titre | titeCapitalize}}</h2>
       <p margin-bottom text-justify>{{article.details}}</p>
       <p *ngIf="article.dateModification === null">Ajouté : {{article.dateAjout}}</p>
       <p *ngIf="article.dateModification">Modifié : {{article.dateModification}}</p>

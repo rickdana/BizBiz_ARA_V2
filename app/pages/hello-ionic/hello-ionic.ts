@@ -5,10 +5,13 @@ import {GlobalsConstants} from "../../constants/globals.constants";
 import {NavController, NavParams, ModalController} from "ionic-angular";
 import {ArticleDetails} from "../article-details/article-details";
 import {searchModalPage} from "../search-articles/search-articles";
+import {OccasStreetTimer} from "../../pipes/timer.pipe";
+import {TiteCapitalize} from "../../pipes/article-titre.pipe";
 
 
 @Component({
-  templateUrl: 'build/pages/hello-ionic/hello-ionic.html'
+  templateUrl: 'build/pages/hello-ionic/hello-ionic.html',
+  pipes: [OccasStreetTimer,TiteCapitalize]
 })
 export class HelloIonicPage {
 
@@ -31,7 +34,7 @@ export class HelloIonicPage {
     this.articleService.getAllArticles().subscribe(res => {
       let articles = res;
 
-      console.log("Article =>",articles)
+      // console.log("Article =>",articles)
     })
 
 
@@ -42,7 +45,7 @@ export class HelloIonicPage {
       this.articleService.getArticlesByLimit(skip,limit).subscribe(res => {
         let articles = res;
         let tab1, tab2;
-
+        // console.log(articles)
         tab1 = articles.splice(0,(articles.length/2));
         tab2 = articles;
         tab1.forEach(x => {
